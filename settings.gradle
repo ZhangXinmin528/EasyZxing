@@ -1,1 +1,1 @@
-include ':app', ':easyzxing_master'
+include ':app', ':easyzxing_master', ':zxing'
