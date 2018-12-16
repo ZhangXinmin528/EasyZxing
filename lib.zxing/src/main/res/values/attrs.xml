@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!--FinderView-->
+    <declare-styleable name="FinderView">
+        <!--边角颜色-->
+        <attr name="corner_color" format="color" />
+        <attr name="laser_color" format="color" />
+        <!--扫描框边线颜色-->
+        <attr name="frame_color" format="color" />
+        <!--模糊区域颜色-->
+        <attr name="mask_color" format="color" />
+        <attr name="result_point_color" format="color" />
+        <attr name="result_color" format="color" />
+        <!--扫描提示文字颜色-->
+        <attr name="label_text_color" format="color" />
+        <!--扫描文字提示-->
+        <attr name="label_text" format="string" />
+        <!--扫描提示文字字号-->
+        <attr name="label_text_size" format="float" />
+    </declare-styleable>
+
+</resources>

@@ -1,4 +1,4 @@
-package com.coding.zxm.easyzxing_master;
+package com.coding.libzxing;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.coding.zxm.easyzxing_master.test", appContext.getPackageName());
+        assertEquals("com.coding.libzxing.test", appContext.getPackageName());
     }
 }

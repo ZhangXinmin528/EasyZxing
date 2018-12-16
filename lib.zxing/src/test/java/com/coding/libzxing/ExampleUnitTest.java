@@ -1,4 +1,4 @@
-package com.coding.zxm.easyzxing_master;
+package com.coding.libzxing;
 
 import org.junit.Test;
 
