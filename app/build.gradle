@@ -33,8 +33,9 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation "com.android.support:appcompat-v7:$rootProject.supportLibraryVersion"
     implementation "com.android.support.constraint:constraint-layout:$rootProject.constraintLayoutVersion"
+
+    implementation project(':lib.zxing')
 }

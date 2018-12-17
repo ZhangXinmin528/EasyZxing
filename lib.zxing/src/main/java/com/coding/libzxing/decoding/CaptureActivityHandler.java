@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.google.zxing.decoding;
+package com.coding.libzxing.decoding;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -25,12 +25,12 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
+import com.coding.libzxing.R;
+import com.coding.libzxing.activity.CaptureActivity;
+import com.coding.libzxing.camera.CameraManager;
+import com.coding.libzxing.view.FinderResultPointCallback;
 import com.google.zxing.BarcodeFormat;
-import com.google.zxing.R;
 import com.google.zxing.Result;
-import com.google.zxing.activity.CaptureActivity;
-import com.google.zxing.camera.CameraManager;
-import com.google.zxing.view.ViewfinderResultPointCallback;
 
 import java.util.Vector;
 
@@ -50,7 +50,7 @@ public final class CaptureActivityHandler extends Handler {
                                   String characterSet) {
         this.activity = activity;
         decodeThread = new DecodeThread(activity, decodeFormats, characterSet,
-                new ViewfinderResultPointCallback(activity.getViewfinderView()));
+                new FinderResultPointCallback(activity.getFinderView()));
         decodeThread.start();
         state = State.SUCCESS;
         // Start ourselves capturing previews and decoding.
@@ -78,9 +78,9 @@ public final class CaptureActivityHandler extends Handler {
 
             /***********************************************************************/
             Bitmap barcode = bundle == null ? null :
-                    (Bitmap) bundle.getParcelable(DecodeThread.BARCODE_BITMAP);//���ñ����߳�
+                    (Bitmap) bundle.getParcelable(DecodeThread.BARCODE_BITMAP);//
 
-            activity.handleDecode((Result) message.obj, barcode);//���ؽ��
+            activity.handleDecode((Result) message.obj, barcode);//
             /***********************************************************************/
 
         } else if (message.what == R.id.decode_failed) {// We're decoding as fast as possible, so when one decode fails, start another.
@@ -125,7 +125,7 @@ public final class CaptureActivityHandler extends Handler {
             state = State.PREVIEW;
             CameraManager.get().requestPreviewFrame(decodeThread.getHandler(), R.id.decode);
             CameraManager.get().requestAutoFocus(this, R.id.auto_focus);
-            activity.drawViewfinder();
+            activity.getFinderView().drawViewfinder();
         }
     }
 

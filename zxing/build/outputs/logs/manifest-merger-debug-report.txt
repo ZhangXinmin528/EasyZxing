@@ -1,57 +1,57 @@
 -- Merging decision tree log ---
 manifest
-ADDED from F:\11-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml:1:1-19:12
-INJECTED from F:\11-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml:1:1-19:12
-INJECTED from F:\11-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml:1:1-19:12
+ADDED from F:\3-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml:1:1-19:12
+INJECTED from F:\3-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml:1:1-19:12
+INJECTED from F:\3-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml:1:1-19:12
 	package
-		ADDED from F:\11-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml:2:5-31
-		INJECTED from F:\11-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml
-		INJECTED from F:\11-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml
+		ADDED from F:\3-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml:2:5-31
+		INJECTED from F:\3-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml
+		INJECTED from F:\3-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml
 	xmlns:android
-		ADDED from F:\11-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml:1:11-69
+		ADDED from F:\3-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml:1:11-69
 uses-permission#android.permission.INTERNET
-ADDED from F:\11-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml:3:5-67
+ADDED from F:\3-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml:3:5-67
 	android:name
-		ADDED from F:\11-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml:3:22-64
+		ADDED from F:\3-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml:3:22-64
 uses-permission#android.permission.VIBRATE
-ADDED from F:\11-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml:4:5-66
+ADDED from F:\3-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml:4:5-66
 	android:name
-		ADDED from F:\11-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml:4:22-63
+		ADDED from F:\3-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml:4:22-63
 uses-permission#android.permission.CAMERA
-ADDED from F:\11-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml:5:5-65
+ADDED from F:\3-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml:5:5-65
 	android:name
-		ADDED from F:\11-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml:5:22-62
+		ADDED from F:\3-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml:5:22-62
 uses-feature#android.hardware.camera.autofocus
-ADDED from F:\11-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml:6:5-70
+ADDED from F:\3-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml:6:5-70
 	android:name
-		ADDED from F:\11-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml:6:19-67
+		ADDED from F:\3-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml:6:19-67
 application
-ADDED from F:\11-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml:8:5-15:19
+ADDED from F:\3-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml:8:5-15:19
 	android:supportsRtl
-		ADDED from F:\11-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml:11:9-35
+		ADDED from F:\3-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml:11:9-35
 	android:label
-		ADDED from F:\11-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml:10:9-41
+		ADDED from F:\3-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml:10:9-41
 	android:allowBackup
-		ADDED from F:\11-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml:9:9-35
+		ADDED from F:\3-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml:9:9-35
 	android:theme
-		ADDED from F:\11-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml:12:9-40
+		ADDED from F:\3-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml:12:9-40
 activity#com.google.zxing.activity.CaptureActivity
-ADDED from F:\11-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml:13:9-14:65
+ADDED from F:\3-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml:13:9-14:65
 	android:theme
-		ADDED from F:\11-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml:14:13-63
+		ADDED from F:\3-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml:14:13-63
 	android:name
-		ADDED from F:\11-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml:13:19-75
+		ADDED from F:\3-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml:13:19-75
 uses-sdk
-INJECTED from F:\11-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from F:\11-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml
-INJECTED from F:\11-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml
-INJECTED from F:\11-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml
-INJECTED from F:\11-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml
+INJECTED from F:\3-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from F:\3-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml
+INJECTED from F:\3-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml
+INJECTED from F:\3-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml
+INJECTED from F:\3-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from F:\11-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml
-		ADDED from F:\11-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml
-		INJECTED from F:\11-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml
+		INJECTED from F:\3-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml
+		ADDED from F:\3-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml
+		INJECTED from F:\3-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from F:\11-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml
-		ADDED from F:\11-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml
-		INJECTED from F:\11-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml
+		INJECTED from F:\3-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml
+		ADDED from F:\3-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml
+		INJECTED from F:\3-android_study\EasyZxing\zxing\src\main\AndroidManifest.xml

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="#333"
+        android:orientation="horizontal"
+        android:padding="12dp">
+
+        <ImageView
+            android:id="@+id/iv_arrow_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/ic_arrow_back_white_24dp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/all_scan_title"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/tv_scan_album"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="@string/all_res_album"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+    </android.support.v7.widget.LinearLayoutCompat>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <SurfaceView
+            android:id="@+id/surfaceview_capture"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center" />
+
+        <com.coding.libzxing.view.FinderView
+            android:id="@+id/finderview_capture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:corner_color="@color/corner_color"
+            app:frame_color="@color/viewfinder_frame"
+            app:label_text="请对准需要识别的二维码/条形码"
+            app:label_text_color="@color/colorAccent"
+            app:laser_color="@color/laser_color"
+            app:mask_color="@color/viewfinder_mask"
+            app:result_color="@color/result_view"
+            app:result_point_color="@color/result_point_color" />
+    </FrameLayout>
+
+</android.support.v7.widget.LinearLayoutCompat>

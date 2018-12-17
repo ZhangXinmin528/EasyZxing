@@ -25,8 +25,6 @@ import com.google.zxing.ResultPoint;
 import java.util.Collection;
 import java.util.HashSet;
 
-import static android.graphics.PixelFormat.OPAQUE;
-
 /**
  * Created by ZhangXinmin on 2018/12/16.
  * Copyright (c) 2018.
@@ -34,20 +32,18 @@ import static android.graphics.PixelFormat.OPAQUE;
 public class FinderView extends View {
     protected static final String TAG = FinderView.class.getSimpleName();
 
-    private static final int[]  SCANNER_ALPHA                 =   {0, 64, 128, 192, 255, 192, 128, 64};
-    private static final long   ANIMATION_DELAY               =   10L;
-    private static final int    OPAQUE                        =   0xFF;
-    private static final int    CORNER_RECT_WIDTH             =   8;  //扫描区边角的宽
-    private static final int    CORNER_RECT_HEIGHT            =   40; //扫描区边角的高
-    private static final int    SCANNER_LINE_MOVE_DISTANCE    =   5;  //扫描线移动距离
-    private static final int    SCANNER_LINE_HEIGHT           =   10;  //扫描线宽度
-
+    private static final int[] SCANNER_ALPHA = {0, 64, 128, 192, 255, 192, 128, 64};
+    private static final long ANIMATION_DELAY = 10L;
+    private static final int OPAQUE = 0xFF;
+    private static final int CORNER_RECT_WIDTH = 8;  //扫描区边角的宽
+    private static final int CORNER_RECT_HEIGHT = 40; //扫描区边角的高
+    private static final int SCANNER_LINE_MOVE_DISTANCE = 5;  //扫描线移动距离
+    private static final int SCANNER_LINE_HEIGHT = 10;  //扫描线宽度
+    public static int scannerStart = 0;
+    public static int scannerEnd = 0;
     private Context mContext;
-
     private Paint mPaint;
     private Bitmap resultBitmap;
-
-
     //模糊区域颜色
     private int maskColor;
     private int resultColor;
@@ -66,12 +62,8 @@ public class FinderView extends View {
     private int labelTextColor;
     //扫描区域提示文字字号
     private float labelTextSize;
-
     private Collection<ResultPoint> possibleResultPoints;
     private Collection<ResultPoint> lastPossibleResultPoints;
-
-    public static int scannerStart = 0;
-    public static int scannerEnd = 0;
 
 
     public FinderView(Context context) {
@@ -117,7 +109,11 @@ public class FinderView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        Rect frame = CameraManager.get().getFramingRect();
+        final CameraManager cameraManager = CameraManager.get();
+        Rect frame = null;
+        if (cameraManager != null) {
+            frame = cameraManager.getFramingRect();
+        }
         if (frame == null) {
             return;
         }
@@ -209,6 +205,7 @@ public class FinderView extends View {
 
     /**
      * 绘制边角
+     *
      * @param canvas
      * @param frame
      */
@@ -236,7 +233,8 @@ public class FinderView extends View {
                 frame.right, frame.bottom, mPaint);
     }
 
-    /**绘制文本
+    /**
+     * 绘制文本
      *
      * @param canvas
      * @param frame
@@ -250,6 +248,7 @@ public class FinderView extends View {
 
     /**
      * 绘制扫描线
+     *
      * @param canvas
      * @param frame
      */
@@ -269,23 +268,23 @@ public class FinderView extends View {
                 Shader.TileMode.MIRROR);
 
         RadialGradient radialGradient = new RadialGradient(
-                (float)(frame.left + frame.width() / 2),
-                (float)(scannerStart + SCANNER_LINE_HEIGHT / 2),
+                (float) (frame.left + frame.width() / 2),
+                (float) (scannerStart + SCANNER_LINE_HEIGHT / 2),
                 360f,
                 laserColor,
                 shadeColor(laserColor),
                 Shader.TileMode.MIRROR);
 
         SweepGradient sweepGradient = new SweepGradient(
-                (float)(frame.left + frame.width() / 2),
-                (float)(scannerStart + SCANNER_LINE_HEIGHT),
+                (float) (frame.left + frame.width() / 2),
+                (float) (scannerStart + SCANNER_LINE_HEIGHT),
                 shadeColor(laserColor),
                 laserColor);
 
         ComposeShader composeShader = new ComposeShader(radialGradient, linearGradient, PorterDuff.Mode.ADD);
 
         mPaint.setShader(radialGradient);
-        if(scannerStart <= scannerEnd) {
+        if (scannerStart <= scannerEnd) {
             //矩形
 //      canvas.drawRect(frame.left, scannerStart, frame.right, scannerStart + SCANNER_LINE_HEIGHT, paint);
             //椭圆
@@ -321,7 +320,7 @@ public class FinderView extends View {
     //处理颜色模糊
     private int shadeColor(int color) {
         String hax = Integer.toHexString(color);
-        String result = "20"+hax.substring(2);
+        String result = "20" + hax.substring(2);
         return Integer.valueOf(result, 16);
     }
 }

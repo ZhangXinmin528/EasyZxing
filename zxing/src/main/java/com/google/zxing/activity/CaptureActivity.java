@@ -338,7 +338,6 @@ public class CaptureActivity extends AppCompatActivity implements Callback {
 
     public void drawViewfinder() {
         viewfinderView.drawViewfinder();
-
     }
 
     private void initBeepSound() {

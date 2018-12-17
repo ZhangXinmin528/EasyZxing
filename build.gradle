@@ -31,7 +31,7 @@ ext {
 
     // App dependencies
     supportLibraryVersion = '28.0.0'
-    constraintLayoutVersion = '1.1.2'
+    constraintLayoutVersion = '1.1.3'
 
     smartrefreshVersion = '1.0.5.1'
     glideVersion = '4.0.0'
