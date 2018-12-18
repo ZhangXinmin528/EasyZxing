@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.google.zxing.decoding;
+package com.coding.libzxing.decoding;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

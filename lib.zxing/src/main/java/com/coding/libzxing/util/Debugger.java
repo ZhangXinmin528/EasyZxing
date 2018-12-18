@@ -8,8 +8,8 @@ import android.util.Log;
  * Copyright (c) 2018 . All rights reserved.
  */
 public final class Debugger {
-    private static boolean LOG_ENABLE = false;
-    private static String LOG_TAG = "ZxingDebug";
+    private static boolean LOG_ENABLE = true;
+    private static String LOG_TAG = "LibZxing";
 
     private Debugger() {
         throw new UnsupportedOperationException("U con't do this!");
