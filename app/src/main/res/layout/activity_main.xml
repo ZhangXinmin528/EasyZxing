@@ -33,7 +33,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:background="@android:color/white"
         android:orientation="vertical">
 
         <Button
@@ -44,8 +43,8 @@
 
         <ImageView
             android:id="@+id/iv_qr"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp" />
 
