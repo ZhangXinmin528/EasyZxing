@@ -8,5 +8,6 @@
     <string name="all_scan_title">扫一扫</string>
     <string name="all_res_album">相册</string>
 
-    <string name="tips_album_permission_deny">禁用读写存储权限，将不能访问相册！</string>
+    <string name="all_check_extronal_permission">访问相册需要使用读写存储权限</string>
+    <string name="all_check_camera_permission">使用扫码功能需要获取相机权限</string>
 </resources>

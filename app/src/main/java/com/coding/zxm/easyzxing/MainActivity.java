@@ -3,14 +3,15 @@ package com.coding.zxm.easyzxing;
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,6 +19,7 @@ import android.widget.TextView;
 import com.coding.libzxing.activity.CaptureActivity;
 import com.coding.libzxing.encoding.QRCodeEncoder;
 import com.coding.libzxing.util.Debugger;
+import com.coding.libzxing.util.DialogUtil;
 import com.coding.libzxing.util.PermissionChecker;
 import com.coding.zxm.easyzxing.util.ImageUtil;
 
@@ -52,10 +54,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Debugger.setLogEnable(true);
 
 
-        if (!PermissionChecker.checkPersmission(mContext, Manifest.permission.CAMERA)) {
-            PermissionChecker.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA);
-        }
-
     }
 
     private void initViews() {
@@ -63,21 +61,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mQrIv = findViewById(R.id.iv_qr);
         findViewById(R.id.btn_scaning).setOnClickListener(this);
         findViewById(R.id.btn_get_qr).setOnClickListener(this);
+
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_scaning:
+                if (!PermissionChecker.checkPersmission(mContext, Manifest.permission.CAMERA)) {
+                    PermissionChecker.requestPermissions(this,
+                            new String[]{Manifest.permission.CAMERA},
+                            REQUEST_CAMERA);
+                } else {
+                    Intent scan = new Intent(mContext, CaptureActivity.class);
+                    startActivityForResult(scan, REQUEST_CODE_SCAN);
+                }
 
-                Intent scan = new Intent(mContext, CaptureActivity.class);
-                startActivityForResult(scan, REQUEST_CODE_SCAN);
                 break;
             case R.id.btn_get_qr:
                 if (!PermissionChecker.checkPersmission(mContext, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                    PermissionChecker.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, REQUEST_WRITE_EXTERNAL);
+                    PermissionChecker.requestPermissions(this,
+                            new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                            REQUEST_WRITE_EXTERNAL);
+                } else {
+                    generateQRCode();
                 }
-                generateQRCode();
+
                 break;
         }
     }
@@ -93,6 +102,35 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         ImageUtil.save(qrCode, new File(dir, "/qr_code.jpeg"), Bitmap.CompressFormat.JPEG);
         mQrIv.setImageBitmap(qrCode);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        switch (requestCode) {
+            case REQUEST_CAMERA:
+                if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+
+                    DialogUtil.showDialog(mContext, "相机使用权限被拒绝！",
+                            (dialog, which) -> {
+
+                            });
+                } else {
+                    Intent scan = new Intent(mContext, CaptureActivity.class);
+                    startActivityForResult(scan, REQUEST_CODE_SCAN);
+                }
+                break;
+            case REQUEST_WRITE_EXTERNAL:
+                if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
+                    DialogUtil.showDialog(mContext, "文件读写权限被拒绝，无法进行文件读写",
+                            (dialog, which) -> {
+
+                            });
+                } else {
+                    generateQRCode();
+                }
+                break;
+        }
     }
 
     @Override

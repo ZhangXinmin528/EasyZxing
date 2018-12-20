@@ -5,21 +5,17 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.content.res.AssetFileDescriptor;
-import android.database.Cursor;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.Vibrator;
-import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
@@ -32,22 +28,15 @@ import com.coding.libzxing.R;
 import com.coding.libzxing.camera.CameraManager;
 import com.coding.libzxing.decoding.CaptureActivityHandler;
 import com.coding.libzxing.decoding.InactivityTimer;
-import com.coding.libzxing.decoding.RGBLuminanceSource;
 import com.coding.libzxing.util.Debugger;
+import com.coding.libzxing.util.DialogUtil;
 import com.coding.libzxing.util.PermissionChecker;
+import com.coding.libzxing.util.ZxingUtil;
 import com.coding.libzxing.view.FinderView;
 import com.google.zxing.BarcodeFormat;
-import com.google.zxing.BinaryBitmap;
-import com.google.zxing.ChecksumException;
-import com.google.zxing.DecodeHintType;
-import com.google.zxing.FormatException;
-import com.google.zxing.NotFoundException;
 import com.google.zxing.Result;
-import com.google.zxing.common.HybridBinarizer;
-import com.google.zxing.qrcode.QRCodeReader;
 
 import java.io.IOException;
-import java.util.Hashtable;
 import java.util.Vector;
 
 /**
@@ -63,9 +52,6 @@ public class CaptureActivity extends AppCompatActivity implements SurfaceHolder.
 
     //select picture from album
     private static final int REQUEST_CODE_SCAN_GALLERY = 1000;
-    private static final int REQUEST_WRITE_EXTERNAL = 2000;
-
-    private String[] PERMISSION_WRITE_EXTERNAL = new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE};
 
     private Context mContext;
 
@@ -85,7 +71,6 @@ public class CaptureActivity extends AppCompatActivity implements SurfaceHolder.
     //scaning from album
     private Bitmap scanBitmap;
     private ProgressDialog mProgress;
-    private String photo_path;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -108,6 +93,18 @@ public class CaptureActivity extends AppCompatActivity implements SurfaceHolder.
         mFinderView = findViewById(R.id.finderview_capture);
         findViewById(R.id.iv_arrow_back).setOnClickListener(this);
         findViewById(R.id.tv_scan_album).setOnClickListener(this);
+
+        checkPermissons();
+    }
+
+    /**
+     * check camera permission
+     */
+    private void checkPermissons() {
+        if (!PermissionChecker.checkPersmission(mContext, Manifest.permission.CAMERA)) {
+            DialogUtil.showDialog(mContext, getString(R.string.all_check_camera_permission),
+                    (dialog, which) -> CaptureActivity.this.finish());
+        }
     }
 
     @Override
@@ -271,8 +268,9 @@ public class CaptureActivity extends AppCompatActivity implements SurfaceHolder.
         if (viewId == R.id.iv_arrow_back) {
             finish();
         } else if (viewId == R.id.tv_scan_album) {
-            if (PermissionChecker.checkPersmission(mContext, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                PermissionChecker.requestPermissions(this, PERMISSION_WRITE_EXTERNAL, REQUEST_WRITE_EXTERNAL);
+            if (!PermissionChecker.checkPersmission(mContext, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
+                DialogUtil.showDialog(mContext, getString(R.string.all_check_extronal_permission),
+                        (dialog, which) -> CaptureActivity.this.finish());
             } else {
                 openAlbum();
             }
@@ -290,94 +288,36 @@ public class CaptureActivity extends AppCompatActivity implements SurfaceHolder.
         startActivityForResult(wrapperIntent, REQUEST_CODE_SCAN_GALLERY);
     }
 
-    /**
-     * 扫描二维码图片的方法
-     * @param path
-     * @return
-     */
-    public Result scanningImage(String path) {
-        if(TextUtils.isEmpty(path)){
-            return null;
-        }
-        Hashtable<DecodeHintType, String> hints = new Hashtable<>();
-        hints.put(DecodeHintType.CHARACTER_SET, "UTF8"); //设置二维码内容的编码
-
-        BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inJustDecodeBounds = true; // 先获取原大小
-        scanBitmap = BitmapFactory.decodeFile(path, options);
-        options.inJustDecodeBounds = false; // 获取新的大小
-        int sampleSize = (int) (options.outHeight / (float) 200);
-        if (sampleSize <= 0){
-            sampleSize = 1;
-        }
-        options.inSampleSize = sampleSize;
-        scanBitmap = BitmapFactory.decodeFile(path, options);
-        RGBLuminanceSource source = new RGBLuminanceSource(scanBitmap);
-        BinaryBitmap bitmap1 = new BinaryBitmap(new HybridBinarizer(source));
-        QRCodeReader reader = new QRCodeReader();
-        try {
-            return reader.decode(bitmap1, hints);
-        } catch (NotFoundException e) {
-            e.printStackTrace();
-        } catch (ChecksumException e) {
-            e.printStackTrace();
-        } catch (FormatException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        if (requestCode == REQUEST_WRITE_EXTERNAL) {
-            Debugger.e(TAG + "state:" + (grantResults[0] != PackageManager.PERMISSION_GRANTED));
-            if (grantResults[0] != PackageManager.PERMISSION_GRANTED) {
-                new AlertDialog.Builder(mContext)
-                        .setMessage(getString(R.string.tips_album_permission_deny))
-                        .setPositiveButton(getString(android.R.string.ok), (dialogInterface, i) -> {
-
-                        })
-                        .show();
-            }
-        }
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-    }
-
     @Override
     protected void onActivityResult(final int requestCode, int resultCode, Intent data) {
-        if (requestCode==RESULT_OK) {
+        if (resultCode == RESULT_OK) {
             switch (requestCode) {
                 case REQUEST_CODE_SCAN_GALLERY:
-                    //获取选中图片的路径
-                    Cursor cursor = getContentResolver().query(data.getData(), null, null, null, null);
-                    if (cursor.moveToFirst()) {
-                        photo_path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
-                    }
-                    cursor.close();
-
-                    mProgress = new ProgressDialog(CaptureActivity.this);
-                    mProgress.setMessage("正在扫描...");
-                    mProgress.setCancelable(false);
-                    mProgress.show();
-
-                    new Thread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Result result = scanningImage(photo_path);
-                            if (result != null) {
-                                Intent resultIntent = new Intent();
-                                Bundle bundle = new Bundle();
-                                bundle.putString(PARAMS_EXTRA_SCAN_RESULT,result.getText());
-                                resultIntent.putExtras(bundle);
-                                setResult(RESULT_OK, resultIntent);
-                            } else {
-                                Message m = handler.obtainMessage();
-                                m.what = R.id.decode_failed;
-                                m.obj = "Scan failed!";
-                                handler.sendMessage(m);
-                            }
+                    if (data != null) {
+                        final Uri uri = data.getData();
+                        if (uri != null) {
+                            final String imagePath = ZxingUtil.getAlbumImagePath(mContext, data);
+                            new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    final Result result = ZxingUtil.scanningImage(imagePath);
+                                    if (result != null) {
+                                        Intent resultIntent = new Intent();
+                                        Bundle bundle = new Bundle();
+                                        bundle.putString(PARAMS_EXTRA_SCAN_RESULT, result.getText());
+                                        resultIntent.putExtras(bundle);
+                                        setResult(RESULT_OK, resultIntent);
+                                        finish();
+                                    } else {
+                                        Message m = handler.obtainMessage();
+                                        m.what = R.id.decode_failed;
+                                        m.obj = "Scan failed!";
+                                        handler.sendMessage(m);
+                                    }
+                                }
+                            }).start();
                         }
-                    }).start();
+                    }
                     break;
             }
         }
