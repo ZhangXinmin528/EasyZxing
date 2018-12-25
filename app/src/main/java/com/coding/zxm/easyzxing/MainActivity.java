@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.NonNull;
@@ -92,10 +93,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void generateQRCode() {
-        Bitmap logo = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.map_logo);
+        Bitmap logo = BitmapFactory.decodeResource(mContext.getResources(), R.drawable.icon_logo_github);
         final int width = QRCodeEncoder.dp2px(mContext, 200);
 
-        Bitmap qrCode = QRCodeEncoder.createCommonQRCodeWithLogo("加油皮卡丘~", width, logo);
+        Bitmap qrCode =
+                QRCodeEncoder.createQRCode(
+                        "https://github.com/ZhangXinmin528/EasyZxing",
+                        width,
+                        width,
+                        Color.parseColor("#872c514b"),
+                        Color.WHITE,
+                        logo);
 
         final String dir =
                 Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).getPath();
