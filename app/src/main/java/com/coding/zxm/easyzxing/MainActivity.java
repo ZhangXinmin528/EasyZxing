@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         "https://github.com/ZhangXinmin528/EasyZxing",
                         width,
                         width,
-                        Color.parseColor("#872c514b"),
+                        Color.argb(120,41,125,214),
                         Color.WHITE,
                         logo);
 

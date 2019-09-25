@@ -95,6 +95,8 @@ public final class QRCodeEncoder {
             hints.put(EncodeHintType.CHARACTER_SET, "utf-8");
             // 容错级别
             hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);
+            //TODO:设置空白边距的宽度
+            hints.put(EncodeHintType.MARGIN, 1); //default is 4
             // 图像数据转换，使用了矩阵转换
             final BitMatrix bitMatrix = new QRCodeWriter().encode(content, BarcodeFormat.QR_CODE, widthPix,
                     heightPix, hints);
