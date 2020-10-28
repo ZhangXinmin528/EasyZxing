@@ -26,6 +26,13 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
+    libraryVariants.all {
+        variant ->
+            variant.outputs.all {
+                outputFileName = "lib.zxing_${defaultConfig.versionName}_${buildType.name}.aar"
+            }
+    }
+
 }
 
 dependencies {
