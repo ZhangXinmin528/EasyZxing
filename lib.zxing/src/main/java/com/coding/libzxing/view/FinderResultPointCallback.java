@@ -1,6 +1,7 @@
 package com.coding.libzxing.view;
 
-import android.support.annotation.NonNull;
+
+import androidx.annotation.NonNull;
 
 import com.google.zxing.ResultPoint;
 import com.google.zxing.ResultPointCallback;

@@ -10,8 +10,9 @@ import android.net.Uri;
 import android.os.Build;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
 import android.text.TextUtils;
+
+import androidx.annotation.NonNull;
 
 import com.coding.libzxing.decoding.RGBLuminanceSource;
 import com.google.zxing.BinaryBitmap;

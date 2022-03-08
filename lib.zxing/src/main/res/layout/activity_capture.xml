@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <android.support.v7.widget.LinearLayoutCompat
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="#333"
@@ -37,7 +37,7 @@
             android:textColor="@android:color/white"
             android:textSize="18sp" />
 
-    </android.support.v7.widget.LinearLayoutCompat>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -55,7 +55,7 @@
             android:layout_height="wrap_content"
             app:corner_color="@color/corner_color"
             app:frame_color="@color/viewfinder_frame"
-            app:label_text="请对准需要识别的二维码/条形码"
+            app:label_text="@string/all_qr_scanning_tips"
             app:label_text_color="@color/colorAccent"
             app:laser_color="@color/laser_color"
             app:mask_color="@color/viewfinder_mask"
@@ -63,4 +63,4 @@
             app:result_point_color="@color/result_point_color" />
     </FrameLayout>
 
-</android.support.v7.widget.LinearLayoutCompat>
+</androidx.appcompat.widget.LinearLayoutCompat>

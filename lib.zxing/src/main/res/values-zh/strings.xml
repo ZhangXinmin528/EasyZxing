@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">zxing</string>
+    <string name="encode_qrcode">生成二维码</string>
+    <string name="dencode_qrcode">扫描二维码</string>
+    <string name="code_text">请输入生成二维码的文本信息</string>
+    <string name="qrcodetext">这里显示扫描结果</string>
+    <string name="all_menu_scan_album">从相册选取二维码</string>
+    <string name="all_scan_title">扫一扫</string>
+    <string name="all_res_album">相册</string>
+    <string name="all_qr_scanning_tips">请对准需要识别的二维码/条形码</string>
+
+    <string name="all_check_extronal_permission">访问相册需要使用读写存储权限</string>
+    <string name="all_check_camera_permission">使用扫码功能需要获取相机权限</string>
+</resources>
