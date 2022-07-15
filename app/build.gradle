@@ -38,6 +38,12 @@ android {
     }
 }
 
+repositories {
+    flatDir {
+        dirs 'libs'
+    }
+}
+
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     //Kotlin
@@ -49,5 +55,6 @@ dependencies {
     implementation deps.constraint_layout
 
     implementation project(':lib.zxing')
-
+//    implementation(name: 'lib.zxing_1.0.2_release', ext: 'aar')
+    implementation "com.google.zxing:core:3.4.1"
 }

@@ -10,7 +10,7 @@ android {
         minSdkVersion build_versions.min_sdk
         targetSdkVersion build_versions.target_sdk
         versionCode 2
-        versionName "1.0.2"
+        versionName VERSION_NAME
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -54,3 +54,4 @@ dependencies {
     //zxing
     api "com.google.zxing:core:$rootProject.zxingCoreVersion"
 }
+apply from: '../mavenPublishing.gradle'
