@@ -1,5 +1,7 @@
 # EasyZxing
 
+Zxing integrates quickly, realizes the function of scanning code and generating QR code, and the development is so simple.
+
 ---
 [![License](https://img.shields.io/badge/License%20-Apache%202-337ab7.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 [![API](https://img.shields.io/badge/API-19%2B-brightgreen.svg?style=flat)](https://android-arsenal.com/api?level=19)
@@ -25,7 +27,7 @@ Add dependencies in build.gradle.
 
 	dependencies {
 		implementation "io.github.zhangxinmin528.zxing:core:1.0.2"
-        implementation "com.google.zxing:core:3.4.1"
+            implementation "com.google.zxing:core:3.4.1"
 	}
 
 
