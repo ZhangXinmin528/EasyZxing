@@ -27,7 +27,6 @@ Add dependencies in build.gradle.
 
 	dependencies {
 		implementation "io.github.zhangxinmin528.zxing:core:1.0.2"
-            implementation "com.google.zxing:core:3.4.1"
 	}
 
 
